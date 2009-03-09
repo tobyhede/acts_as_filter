@@ -37,9 +37,7 @@ module ActsAsAwesome #:nodoc:
         end        
       end
 
-      filter_scopes.inject(eval(self.to_s)) {|model,scope| model.scopes[scope[0]].call(model, scope[1]) }
-
-    
+      filter_scopes.inject(eval(self.to_s)) {|model,scope| model.scopes[scope[0]].call(model, scope[1]) }    
     end
     
   end

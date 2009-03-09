@@ -7,7 +7,56 @@ Acts As Awesome is an ActiveRecord filtering plugin based on named_scopes
 Installation
 ============
 
-To be continued ...
+In your model class your declare "acts_as_awesome" and you now have an extra class method: find_by_filter
+
+  find_by_filter
+  -------------------------------
+  find_by_filter accepts a hash of scope names and values, and chains them into parametised scope calls
+  
+  If the model has a named_scope that matches the provided name, this is called.
+  If no named_scope is found, an anonymous scopes is created.
+  
+  For example:
+  Given the following model definitions
+  
+  class Document < ActiveRecord::Base
+    acts_as_awesome
+    belongs_to :author
+    
+
+    named_scope :author_name, 
+                lambda { |*args| {
+                  :include => "author",
+                  :conditions => ["authors.name = ?", args.first]
+                }}
+                                
+  end
+
+  class Author < ActiveRecord::Base
+    has_many :documents
+  end
+  
+  We can now from our controller accept incoming parameters and pass them to find_by_filter:
+  
+  # uses the declared "author_name" scope
+  options = {:author_name => "toby"}      
+  documents = Document.find_by_filter(options)
+    
+  # creates an anonymous scope on the "name" column
+  options = {:name => "document_1"}      
+  documents = Document.find_by_filter(options)     
+      
+  # combines the two above scopes into a single chained call
+  options = {:author_name => "toby", :name => "document_1"}      
+  documents = Document.find_by_filter(options)     
+  
+  
+  See?
+  Awesome. 
+  
+Pending
+==============
+Adding smart pagination as a default (everyone uses will_paginate, right?)
 
 
 Copyright (c) 2008 Toby Hede (tobyhede@finitestatemachine.com), released under the MIT license
