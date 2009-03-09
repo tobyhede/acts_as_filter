@@ -1,0 +1,70 @@
+require "active_record"
+
+module ActsAsScheduled #:nodoc:
+
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+  
+  # This +acts_as+ extension provides the capabilities for sorting and reordering a number of objects in a list.
+  # The class that has this specified needs to have a +position+ column defined as an integer on
+  # the mapped database table.
+  #
+  # Todo list example:
+  #
+  #   class ScheduledItem < ActiveRecord::Base
+  #     acts_as_scheduled
+  #   end
+  #
+  #   schedule_minute = ScheduledItem.new(:frequency => 1.minute, :last_scheduled => 2.seconds.ago)
+  #   schedule_minute.save
+  #
+  #   schedule_day = ScheduledItem.new(:name =>"day", :frequency => 1.day, :last_scheduled => 25.hours.ago)
+  #   schedule_day.save
+  #
+  #   #returns thing_day because it was last_scheduled 25 hours ago
+  #   schedule_day = ScheduledItem.find_next_scheduled
+  #   schedule_day.do_some_stuff
+  #   schedule_day.schedule_complete
+  #   schedule_day.save
+    
+  module ClassMethods
+
+      def acts_as_scheduled(opts={})
+          options = options_for_scheduled(opts)
+          extend ActsAsScheduled::SingletonMethods
+          include ActsAsScheduled::InstanceMethods
+          
+          class_eval do           
+            
+            def schedule_complete
+              self.last_scheduled = Time.now
+            end
+            
+          end
+      end
+            
+      def options_for_scheduled(opts={})
+        {
+        }.merge(opts)
+      end
+  end
+  
+  module SingletonMethods
+    
+    def find_next_scheduled
+      find(:first, 
+        :conditions => ["last_scheduled <= DATE_SUB(NOW(), INTERVAL frequency SECOND)"],
+        :order => "frequency ASC" 
+      )
+    end
+    
+  end
+
+
+  module InstanceMethods #:nodoc:
+  end
+  
+
+end
+

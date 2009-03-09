@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/2/trunk/acts_as_scheduled
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/3/trunk/acts_as_scheduled/init.rb
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/4/trunk/acts_as_scheduled/Rakefile
+END
+uninstall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/acts_as_scheduled/uninstall.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/4/trunk/acts_as_scheduled/README
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/acts_as_scheduled/MIT-LICENSE
+END

@@ -1,0 +1,94 @@
+8
+
+dir
+2
+https://act-as-scheduled.googlecode.com/svn/trunk/acts_as_scheduled
+https://act-as-scheduled.googlecode.com/svn
+
+
+
+2008-04-19T12:47:26.360579Z
+2
+tobyhede
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6af97b1e-394b-0410-901f-e75a8b44e7a7
+
+MIT-LICENSE
+file
+3
+
+
+
+2008-04-19T11:12:35.000000Z
+ef8a8411d1f142aee549cd9a00a720d5
+2008-04-19T12:47:57.367715Z
+3
+tobyhede
+
+README
+file
+4
+
+
+
+2008-04-20T01:27:03.000000Z
+07d97b9906be0509a6836d40c027e6a9
+2008-04-20T01:27:28.852139Z
+4
+tobyhede
+
+Rakefile
+file
+4
+
+
+
+2008-04-19T11:12:35.000000Z
+a426916200efea15a501ac19be9c6b35
+2008-04-20T01:27:28.852139Z
+4
+tobyhede
+
+init.rb
+file
+3
+
+
+
+2008-04-19T11:59:28.000000Z
+d87bcb90e837c3d12bf33a190cc07ae7
+2008-04-19T12:47:57.367715Z
+3
+tobyhede
+
+lib
+dir
+
+test
+dir
+
+uninstall.rb
+file
+3
+
+
+
+2008-04-19T11:12:35.000000Z
+2a5fc883fe7f8dfe22ced24643d59ad4
+2008-04-19T12:47:57.367715Z
+3
+tobyhede
+
