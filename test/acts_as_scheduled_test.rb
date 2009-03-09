@@ -19,8 +19,7 @@ class Document < ActiveRecord::Base
                   :include => "author",
                   :conditions => ["authors.name = ?", args.first]
                 }}
-              
-                     
+                                
 end
 
   
