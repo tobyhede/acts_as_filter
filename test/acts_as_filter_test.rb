@@ -1,6 +1,7 @@
 require 'test/unit'
 require 'rubygems'
 require 'active_record'
+require 'will_paginate'
 
 require "#{File.dirname(__FILE__)}/../init"
 
@@ -9,7 +10,7 @@ ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => ":memo
 
 
 class Document < ActiveRecord::Base
-    acts_as_awesome
+    acts_as_filter
     belongs_to :author
     
     named_scope :test, :conditions => ["id = 1"]
@@ -27,7 +28,7 @@ class Author < ActiveRecord::Base
   has_many :documents
 end
   
-module AwesomeHelper
+module FilterHelper
 
   def create_document
     create_documents(1)
@@ -44,12 +45,12 @@ module AwesomeHelper
 end
 
     
-class ActsAsAwesomeTest < Test::Unit::TestCase
-    include AwesomeHelper
+class ActsAsFilterTest < Test::Unit::TestCase
+    include FilterHelper
     
     def setup  
       
-      ActiveRecord::Schema.define do
+      ActiveRecord::Schema.define do 
         
         create_table :documents, :force => true do |t|
           t.integer   :author_id
@@ -93,7 +94,7 @@ class ActsAsAwesomeTest < Test::Unit::TestCase
     end
     
         
-    def test_anaonymous_filter
+    def test_anonymous_filter
       create_documents
       
       options = {:name => "document_1"}      

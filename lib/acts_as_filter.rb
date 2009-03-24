@@ -1,6 +1,6 @@
 require "active_record"
 
-module ActsAsAwesome #:nodoc:
+module ActsAsFilter #:nodoc:
 
   def self.included(base)
     base.extend(ClassMethods)
@@ -9,16 +9,16 @@ module ActsAsAwesome #:nodoc:
     
   module ClassMethods
 
-      def acts_as_awesome(opts={})
-          options = options_for_scheduled(opts)
-          extend ActsAsAwesome::SingletonMethods
-          include ActsAsAwesome::InstanceMethods
+      def acts_as_filter(opts={})
+          options = options_for_filter(opts)
+          extend ActsAsFilter::SingletonMethods
+          include ActsAsFilter::InstanceMethods
           
           class_eval do                       
           end
       end
             
-      def options_for_scheduled(opts={})
+      def options_for_filter(opts={})
         {}.merge(opts)
       end
   end
@@ -36,8 +36,13 @@ module ActsAsAwesome #:nodoc:
           filter_scopes << [:scoped, {:conditions => ["#{name} = ?", value]}]
         end        
       end
-
-      filter_scopes.inject(eval(self.to_s)) {|model,scope| model.scopes[scope[0]].call(model, scope[1]) }    
+            
+      order = opts[:order] || "id ASC"    
+      page = opts[:page] || 1
+      per_page = opts[:per_page] || 10
+      
+      filter_scopes.inject(eval(self.to_s)) {|model,scope| model.scopes[scope[0]].call(model, scope[1]) }.paginate(:all, :order => order, :page => page, :per_page => per_page)       
+      
     end
     
   end

@@ -1,13 +1,13 @@
-ActsAsAwesome
+ActsAsFilter
 ===============
 
-Acts As Awesome is an ActiveRecord filtering plugin based on named_scopes
+Acts As Filter is an ActiveRecord filtering plugin based on named_scopes
 
 
 Installation
 ============
 
-In your model class your declare "acts_as_awesome" and you now have an extra class method: find_by_filter
+In your model class your declare "acts_as_filter" and you now have an extra class method: find_by_filter
 
   find_by_filter
   -------------------------------
@@ -20,7 +20,7 @@ In your model class your declare "acts_as_awesome" and you now have an extra cla
   Given the following model definitions
   
   class Document < ActiveRecord::Base
-    acts_as_awesome
+    acts_as_filter
     belongs_to :author
     
 
